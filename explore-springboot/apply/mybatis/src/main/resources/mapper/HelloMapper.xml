@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.monkey.mybatis.mapper.HelloMapper">
+
+    <select id="hello" resultType="java.lang.String">
+        <if test="id == @com.monkey.mybatis.config.mybatis.Constant@hello">
+        SELECT `username` FROM test WHERE id=#{id}
+        </if>
+        <if test="id != @com.monkey.mybatis.config.mybatis.Constant@hello">
+            SELECT `username` FROM test WHERE id=100
+        </if>
+    </select>
+    <select id="hello2" resultType="com.monkey.mybatis.model.Info">
+        SELECT id
+        <if test="flag">
+            ,username
+        </if>
+        FROM ${tableName}
+        WHERE id IN
+        <foreach collection="idList" open="(" close=")" separator="," item="id">
+            ${id}
+        </foreach>
+    </select>
+    <delete id="hell">
+        SELECT id FROM test1
+    </delete>
+</mapper>

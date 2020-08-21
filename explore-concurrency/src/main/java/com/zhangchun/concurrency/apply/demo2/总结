@@ -1,0 +1,30 @@
+1.map和set本身是一对（set本身是map），所以有concurrentHashMap，就会有concurrentHashMap。有map的就有set
+
+poll和put是一对
+take和offer是一对
+
+Vector
+ConcurrentLinkedQueue
+CopyOnWriteArrayList
+
+Collectors
+Collections.synchronizedList();
+
+ConcurrentHashMap分段锁--效率高
+HashTable锁整个对象
+HashNap 有线程安全问题
+LinkedBlockingQueue ---无界队列（也可以说是有界的，但是它的界限是Integer.MAXVALUE） take取元索（不会报错) put
+ArrayBlockingQueue-----基于数组实现的队列，有界 满的状态 :  put阻塞，offer什么都不会发生
+DelayQueue  可以延时执行任务
+TransferQueue   可以直接把任务丢给消费者而不丢给队列
+LinkedTransferQueue transfer() 方法会阻塞 take() 会阻塞
+SynchronousQueue没有容量 add() —如果没有及时消费报错 put()阻塞，等待消费
+
+
+
+2.
+3.
+4.
+5.
+6.
+7.

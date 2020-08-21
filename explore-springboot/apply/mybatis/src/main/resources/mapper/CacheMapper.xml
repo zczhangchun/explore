@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.monkey.mybatis.mapper.CacheMapper">
+
+    <select id="selectAll" resultType="com.monkey.mybatis.model.Info">
+        SELECT DISTINCT(id), id_name, id_pic FROM tuijian_gameboxGame
+    </select>
+    <select id="queryInfoById" resultType="com.monkey.mybatis.model.Info">
+        SELECT DISTINCT(id), id_name as name, id_pic as pic FROM tuijian_gameboxGame WHERE id=#{xxx} LIMIT 1
+    </select>
+</mapper>

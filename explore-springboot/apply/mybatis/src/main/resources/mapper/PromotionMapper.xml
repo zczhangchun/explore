@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.monkey.mybatis.mapper.PromotionMapper">
+    <select id="queryInfoList" resultType="com.monkey.mybatis.model.Info">
+        SELECT id, id_name as name
+        <if test="hasPic">
+            ,id_pic as pic
+        </if>
+        FROM ${tableName}
+        WHERE id IN
+        <foreach collection="idList" separator="," open="(" close=")" item="id">
+            #{id,javaType=int,jdbcType=INTEGER}
+        </foreach>
+    </select>
+    <select id="queryIds" resultType="java.lang.String">
+        select id
+        from tuijian_gameboxGame
+        limit 30
+    </select>
+    <resultMap id="tagGroup" type="com.monkey.mybatis.model.TagGroup">
+        <id column="id" property="id"/>
+        <result column="groupName" property="groupName"/>
+        <result column="tagId" property="tagId" typeHandler="com.monkey.mybatis.handler.StringToIntegerTypeHandler"/>
+        <result column="groupType" property="groupType"/>
+    </resultMap>
+    <select id="queryGroups" resultMap="tagGroup">
+        SELECT a.id, a.groupName, b.word as tagId, a.groupType
+        FROM position_word_group_info as a
+                 LEFT JOIN position_word_group_expand_info as b
+                           ON a.id = b.`group`
+        WHERE a.mediaUniqueId = #{mediaUniqueId}
+          AND a.datatraceId = #{datatraceId}
+          AND a.groupType = #{groupType}
+    </select>
+    <select id="query" resultType="java.lang.String">
+        SELECT c.datatraceId
+        FROM (
+                 SELECT b.mediaUniqueId,
+                        a.recallConfig,
+                        a.interveneConfig,
+                        a.datatraceId,
+                        a.displayNum,
+                        a.algId,
+                        a.`status`,
+                        a.itemId,
+                        a.itemName
+                 FROM (
+                          SELECT a.`enable`,
+                                 a.mediaId         as mediaId,
+                                 b.recallConfig    as recallConfig,
+                                 b.interveneConfig as interveneConfig,
+                                 a.datatraceId     as datatraceId,
+                                 b.displayNum      as displayNum,
+                                 b.algorithmModel  as algId,
+                                 a.state           as status,
+                                 b.itemId          as itemId,
+                                 b.algInformation  as algInformation,
+                                 b.sceneType       as sceneType,
+                                 CASE
+                                     WHEN itemId = 1 THEN '游戏盒游戏'
+                                     WHEN itemId = 2 THEN '游戏盒词'
+                                     WHEN itemId = 3 THEN '快爆游戏'
+                                     WHEN itemId = 4 THEN '游戏盒活动'
+                                     WHEN itemId = 5 THEN '云课堂课程'
+                                     END              'itemName'
+                          FROM positionInfo as a
+                                   LEFT JOIN positionInfo_expand as b
+                                             ON a.id = b.positionInfoId
+                          WHERE a.mediaId = 254
+                             OR a.mediaId = 347
+                             OR a.mediaId = 2068
+                      ) as a
+                          LEFT JOIN
+                      mediaInfo as b
+                      ON b.id = a.mediaId
+             ) as c
+    </select>
+    <insert id="insert">
+        INSERT INTO `adgame_promotion`.`filterDatatraceId` (`datatraceId`, `enable`)
+        VALUES (#{datatraceId}, '1');
+    </insert>
+    <delete id="update">
+        UPDATE positionInfo SET state = 0 WHERE datatraceId=#{datatraceId}
+    </delete>
+    <select id="query2" resultType="java.lang.String">
+        SELECT datatraceId FROM tj_position WHERE status=0
+    </select>
+    <update id="updateTjPosition">
+        update tj_position SET status=0 WHERE datatrace=#{datatraceId}
+    </update>
+    <select id="ids" resultType="java.lang.Integer">
+        SELECT distinct id FROM kb_game_base_expend LIMIT 5000
+    </select>
+</mapper>

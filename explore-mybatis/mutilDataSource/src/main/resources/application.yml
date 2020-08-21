@@ -1,0 +1,6 @@
+hadoop1:
+  mysql:
+    url: jdbc:mysql://hadoop1:3306/explore
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: zc123123

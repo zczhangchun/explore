@@ -1,0 +1,2 @@
+1、第一种，直接使用client.prepare操作()，返回的是一个builder对象，然后对这个builder对象进行构造，然后get()结束。需要现场直接生成例如：client.prepareUpdate()
+2、第二种，使用client.操作(操作请求)，里面方法是各种Request，需要先构建，在放进去。

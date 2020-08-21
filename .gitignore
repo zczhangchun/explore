@@ -1,0 +1,14 @@
+# Project exclude paths
+/explore-concurrency/target/
+/explore-designPattern/target/
+/explore-elasticsearch/es-apply/es-core-first/target/
+/explore-mybatis/mutilDataSource/target/
+/explore-netty/target/
+/explore-spring/target/
+/explore-springboot/apply/cache/target/
+/explore-springboot/apply/druidDataSource/target/
+/explore-springboot/apply/multiProfiles/target/
+/explore-springboot/apply/mybatis/target/
+/explore-springboot/apply/propertiesMapping/target/
+/explore-springboot/apply/redis/target/
+/explore-springboot/apply/webjarProject/target/

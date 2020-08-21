@@ -1,0 +1,4 @@
+spring:
+  redis:
+    tuijianHost: qz211
+    tuijianPort: 6379
