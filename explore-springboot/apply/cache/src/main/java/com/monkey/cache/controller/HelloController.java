@@ -2,30 +2,44 @@ package com.monkey.cache.controller;
 
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.github.benmanes.caffeine.cache.LoadingCache;
 import com.monkey.cache.A;
 import com.monkey.cache.service.HelloService;
-import org.springframework.beans.factory.annotation.Autowired;
+import lombok.AllArgsConstructor;
 import org.springframework.cache.Cache;
 import org.springframework.cache.CacheManager;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.util.Map;
 
 @RestController
+@AllArgsConstructor
 public class HelloController {
 
-    @Autowired
-    HelloService helloService;
+    private final HelloService helloService;
 
-    @Autowired
-    CacheManager cacheManager;
+    private final CacheManager cacheManager;
 
-    @Autowired
-    ObjectMapper objectMapper;
+    private final ObjectMapper objectMapper;
 
-    @Autowired
-    A a;
+    private final A a;
+
+    private final LoadingCache<String, Integer> cache;
+
+
+    @RequestMapping("getCache")
+    public Integer hello1(@RequestParam(value = "key") String key){
+        Integer ifPresent = cache.get(key);
+        return ifPresent;
+    }
+
+    //@RequestMapping("getCache2")
+    //public Integer hello1(String key){
+    //    //return caffeineCache.get(key, key -> 1);
+    //    return 1;
+    //}
 
 
     @RequestMapping("hello")

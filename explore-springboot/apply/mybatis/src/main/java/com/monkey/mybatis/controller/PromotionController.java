@@ -74,8 +74,8 @@ public class PromotionController {
         System.out.println(query.size());
     }
 
-    @RequestMapping("movetoPid")
-    public void huifu()throws Exception{
+    @RequestMapping("check")
+    public void check()throws Exception{
 
         //查出状态是0的，即要关闭的资源位
         List<String> datatraceIds = promotionMapper.query2();
@@ -93,25 +93,19 @@ public class PromotionController {
             BasicHeader header3 = new BasicHeader("Accept", "*/*");
             BasicHeader header4 = new BasicHeader("Accept-Encoding", "gzip, deflate, br");
             BasicHeader header5 = new BasicHeader("Connection", "keep-alive");
-
             httpPut.addHeader(header1);
             httpPut.addHeader(header2);
             httpPut.addHeader(header3);
             httpPut.addHeader(header4);
             httpPut.addHeader(header5);
-
-
             httpPut.setEntity(formEntity);
             System.out.println("发起的请求：" + httpPut);
             CloseableHttpResponse execute = httpClient.execute(httpPut);
-
             if (execute.getStatusLine().getStatusCode() == 200){
                 String content = EntityUtils.toString(execute.getEntity());
                 System.out.println(content.length());
             }
         }
-
-
 
 
     }

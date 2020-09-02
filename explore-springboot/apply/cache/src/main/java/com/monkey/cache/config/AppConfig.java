@@ -1,11 +1,16 @@
 package com.monkey.cache.config;
 
+import com.github.benmanes.caffeine.cache.CacheLoader;
 import com.github.benmanes.caffeine.cache.Caffeine;
+import com.github.benmanes.caffeine.cache.LoadingCache;
+import org.checkerframework.checker.nullness.qual.NonNull;
 import org.springframework.cache.CacheManager;
 import org.springframework.cache.caffeine.CaffeineCacheManager;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.Executor;
 import java.util.concurrent.TimeUnit;
 
 @Configuration
@@ -31,6 +36,32 @@ public class AppConfig {
 
     public static void main(String[] args) throws Exception {
 
+    }
+
+    @Bean
+    public LoadingCache<String, Integer> caffeineCache(){
+        return Caffeine.newBuilder()
+                .refreshAfterWrite(1, TimeUnit.MINUTES)//一分钟异步重新加载
+                .expireAfterWrite(1, TimeUnit.HOURS)//一个小时没用移除
+                .build(new CacheLoader<String, Integer>() {
+                    @Override
+                    public Integer load(@NonNull String key) throws Exception {
+                        String[] ss = key.split("_");
+                        return loadData(key);
+                    }
+
+
+                    @Override
+                    public @NonNull CompletableFuture<Integer> asyncReload(@NonNull String key, @NonNull Integer oldValue, @NonNull Executor executor) {
+                        String[] ss = key.split("_");
+                        return CompletableFuture.supplyAsync(() -> loadData(key));
+                    }
+
+                });
+    }
+
+    public Integer loadData(String key){
+        return Integer.valueOf(key);
     }
 
 
