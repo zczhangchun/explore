@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-@RequestMapping("cache")
+@RequestMapping("com.monkey.cache")
 @RestController
 public class CacheController {
 
@@ -28,8 +28,10 @@ public class CacheController {
     private StringRedisTemplate tuijianRedisTemplate;
 
 
+
     @RequestMapping("hotGame")
     public void hotGame(){
+
         tuijianRedisTemplate.opsForValue().set("hykb_hotGame", Joiner.on("_").join(promotionMapper.ids()));
     }
 

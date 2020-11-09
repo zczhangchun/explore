@@ -5,7 +5,7 @@
 /explore-mybatis/mutilDataSource/target/
 /explore-netty/target/
 /explore-spring/target/
-/explore-springboot/apply/cache/target/
+/explore-springboot/apply/com.monkey.cache/target/
 /explore-springboot/apply/druidDataSource/target/
 /explore-springboot/apply/multiProfiles/target/
 /explore-springboot/apply/mybatis/target/

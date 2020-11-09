@@ -1,6 +1,6 @@
 #spring:
-#  cache:
-#    cache-names: promotion
+#  com.monkey.cache:
+#    com.monkey.cache-names: promotion
 #    type: caffeine
 #    caffeine:
 #      spec: initialCapacity=50,maximumSize=500,expireAfterWrite=100s

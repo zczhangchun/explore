@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>首页</title>
+    <script src="https://cdn.bootcss.com/jquery/3.4.1/jquery.js"></script>
+    <!--    <script src="[https://cdn.staticfile.org/jquery/1.12.3/jquery.min.js](https://cdn.staticfile.org/jquery/1.12.3/jquery.min.js)"></script>-->
+</head>
+<body>
+<h1>字母哥业务系统登录</h1>
+<form action="/login" method="post">
+    <span>用户名称</span><input type="text" name="username" id="username"/> <br>
+    <span>用户密码</span><input type="password" name="password"  id="password"/> <br>
+    <input type="button" onclick="login()" value="登陆"/>
+</form>
+<script type="text/javascript">
+    function login() {
+        console.log("hello")
+        var username = $("#username").val();
+        var password = $("#password").val();
+        if (username === "" || password === "") {
+            alert('用户名或密码不能为空');
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/login",
+            data: {
+                "username": username,   //这里的参数名称要和Spring Security配置一致
+                "password": password
+            },
+            success: function (json) {
+                if(json.isok){
+                    location.href = '/'; //index.html](//index.html)
+                }else{
+                    alert(json.message);
+                    location.href = '/login.html'; //index.html](//index.html)
+                }
+            },
+            error: function (e) {
+                console.log("失败"+json)
+            }
+        });
+    }
+</script>
+
+</body>
+</html>

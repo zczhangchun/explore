@@ -1,0 +1,31 @@
+继承的类
+HystrixCommand：是用来获取一条数据的
+HystrixObservableCommand：是设计用来获取多条数据的
+
+============================================================================================================
+command的四种调用方式
+
+同步单值调用：类必须是HystrixCommand的子类
+new CallInterfaceCommand(1L).execute()
+
+同步多值调用：类必须是HystrixObservableCommand的子类
+new CallInterfaceObservableCommand(Arrays.asList(1L,2L)).observe();
+
+异步单值调用：类必须是HystrixCommand的子类
+new CallInterfaceCommand(1L).queue();
+
+同步多值调用：类必须是HystrixObservableCommand的子类
+new CallInterfaceObservableCommand(Arrays.asList(1L,2L)).toObservable().toBlocking().toFuture();
+
+============================================================================================================
+两种资源隔离技术
+
+线程池隔离技术
+super(HystrixCommandGroupKey.Factory.asKey("CallInterfaceCommand"));
+
+信号量隔离技术
+super(Setter.withGroupKey(HystrixCommandGroupKey.Factory.asKey("semaphoreGroup"))
+                .andCommandPropertiesDefaults(HystrixCommandProperties.Setter()
+                        .withExecutionIsolationStrategy(HystrixCommandProperties.ExecutionIsolationStrategy.SEMAPHORE)
+                )
+        );

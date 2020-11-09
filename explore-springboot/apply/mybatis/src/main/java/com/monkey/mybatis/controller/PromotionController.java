@@ -34,7 +34,7 @@ public class PromotionController {
 
     @RequestMapping("promotion33")
     public void ids(){
-        List<Integer> ids = promotionMapper.ids();
+        Set<Integer> ids = promotionMapper.ids();
         StringBuilder sb = new StringBuilder();
         for (Integer id : ids) {
             sb.append(id).append("_");

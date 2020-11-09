@@ -1,0 +1,21 @@
+requestCache
+就是一次http请求的缓存级别，这个http请求结束后，缓存就没有了
+=================================================================================
+
+当一次http请求中，查询相同的数据，那么直接走缓存。
+1. 第一次执行的时候会把数据放到hystrix的临时缓存
+2. 第二次执行相同的数据，会从hystrix的临时缓存中拿
+3. 这次http请求结束后，hystrix的临时缓存也没了
+=================================================================================
+使用：
+1. 创建一个Filter，并初始化Hystrix的request context
+2. Command对象中重写getCacheKey方法
+3. 将这个filter注册到spring容器中
+
+=================================================================================
+删除缓存使用：
+1. 在Command中提供一个清空缓存的方法，代码如下，KEY就是CommandKey
+    public static void flushCache(Long productId){
+        HystrixRequestCache.getInstance(KEY, HystrixConcurrencyStrategyDefault.getInstance()).clear("productId_" + productId);
+    }
+2.要删除缓存时，就直接调用这个静态方法即可。

@@ -89,6 +89,6 @@
         update tj_position SET status=0 WHERE datatrace=#{datatraceId}
     </update>
     <select id="ids" resultType="java.lang.Integer">
-        SELECT distinct id FROM kb_game_base_expend LIMIT 5000
+        SELECT distinct id FROM kb_game_base_expend WHERE id NOT in (80522, 76335) LIMIT 5000
     </select>
 </mapper>

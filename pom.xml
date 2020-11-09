@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <groupId>com.zhangchun</groupId>
+    <artifactId>explore</artifactId>
+    <packaging>pom</packaging>
+    <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>explore-spring</module>
+        <module>explore-springboot</module>
+        <module>explore-mybatis</module>
+        <module>explore-designPattern</module>
+        <module>explore-concurrency</module>
+        <module>explore-akka</module>
+        <module>explore-elasticsearch</module>
+        <module>explore-elasticsearch/es-apply</module>
+        <module>explore-netty</module>
+        <module>explore-springboot/apply/test</module>
+        <module>explore-elasticsearch/es-apply/es-core-second</module>
+        <module>explore-httpclient</module>
+        <module>explore-redisson</module>
+        <module>explore-storm</module>
+        <module>explore-hystrix</module>
+        <module>explore-ehcache</module>
+        <module>explore-security</module>
+        <module>explore-security/explore-httpbasic</module>
+    </modules>
+
+</project>

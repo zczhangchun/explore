@@ -26,6 +26,6 @@ public interface PromotionMapper {
 
     void insert(String datatraceId);
 
-    List<Integer> ids();
+    Set<Integer> ids();
 
 }

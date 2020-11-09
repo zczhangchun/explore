@@ -1,0 +1,15 @@
+spring:
+  application:
+    name: feature-server
+  redis:
+    featureHost: 172.16.38.221
+    featurePort: 6379
+  datasource:
+    url: jdbc:mysql://172.16.38.214:3306/feature
+    username: root
+    password: zc123123
+    driver-class-name: com.mysql.jdbc.Driver
+mybatis:
+  mapper-locations: classpath:mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true

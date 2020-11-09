@@ -17,9 +17,7 @@
     <modules>
         <module>apply</module>
         <module>source</module>
-        <module>japidocs</module>
         <module>apply/mybatis</module>
-        <module>apply/cache</module>
         <module>apply/redis</module>
     </modules>
     <dependencies>
