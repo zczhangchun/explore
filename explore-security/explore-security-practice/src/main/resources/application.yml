@@ -1,0 +1,9 @@
+spring:
+  datasource:
+    url: jdbc:mysql://eshop-cache04:3306/feature
+    driver-class-name: com.mysql.jdbc.Driver
+    username: root
+    password: zc123123
+
+mybatis-plus:
+  mapper-locations: classpath:mapper/*.xml

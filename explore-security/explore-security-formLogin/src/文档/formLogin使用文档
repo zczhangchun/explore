@@ -1,0 +1,37 @@
+基本使用
+1、配置登录验证逻辑。继承WebSecurityConfigurerAdapter ，重写configure(HttpSecurity http) 方法。
+2、配置具体用户。以及用户对应的角色。重写WebSecurityConfigurerAdapter的configure(AuthenticationManagerBuilder auth)方法，
+3、静态资源访问。重写WebSecurityConfigurerAdapter类的configure(WebSecurity web) 方法。
+
+==========================================================================================
+自定义登陆流程
+默认会跳转到指定的页面，但是我们可能需要返回的是json
+1、自己编写登陆成功后的处理逻辑。继承SavedRequestAwareAuthenticationSuccessHandler类，重写onAuthenticationSuccess方法
+2、自己编写登陆失败后的处理逻辑。承SimpleUrlAuthenticationFailureHandler类，重写onAuthenticationFailure方法
+3、在配置文件中使用successHandler和failureHandler指定自定义的逻辑处理类
+
+==========================================================================================
+Session会话管理
+1、指定session创建的策略。configure(HttpSecurity http) 方法中的http加入sessionManagement().sessionCreationPolicy(策略)
+2、配置会话的超时时间。两种方式，优先第二种：
+server.servlet.session.timeout=15m
+spring.session.timeout = 15m
+3、配置会话超时的处理。configure(HttpSecurity http) 方法中的http加入sessionManagement().invalidSessionUrl(超时后跳转的页面)
+4、配置session固化保护。configure(HttpSecurity http) 方法中的http加入sessionManagement().sessionFixation().策略()，有三种可以选择：
+none()
+newSession()
+migrationSession()：默认
+5、提高Cookie安全，从而提高session的安全。
+server.servlet.session.cookie.http-only=true
+server.servlet.session.cookie.secure=true ：这个是设置只有HTTPS才能访问，所以不要设置
+
+==========================================================================================
+账号多端登陆
+1、配置多端登陆策略。configure(HttpSecurity http) 方法中的http加入sessionManagement()，有三类策略配置：
+maximumSessions表示同一个用户最大的登录数量
+maxSessionsPreventsLogin提供两种session保护策略：
+    - true表示已经登录就不予许再次登录，
+    - false表示允许再次登录但是之前的登录账户会被踢下线
+expiredSessionStrategy表示自定义一个session被下线(超时)之后的处理策略。
+
+

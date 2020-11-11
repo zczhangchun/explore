@@ -6,13 +6,16 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
         <version>2.1.5.RELEASE</version>
+        <relativePath/>
     </parent>
     <modelVersion>4.0.0</modelVersion>
 
     <artifactId>explore-security</artifactId>
     <packaging>pom</packaging>
     <modules>
-        <module>explore-fromLogin</module>
+        <module>explore-security-formLogin</module>
+        <module>explore-security-httpbasic</module>
+        <module>explore-security-practice</module>
     </modules>
 
     <properties>
@@ -28,6 +31,11 @@
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-security</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
         </dependency>
     </dependencies>
 

@@ -1,8 +1,0 @@
-spring:
-  freemarker:
-    cache: false
-    suffix: .html
-    charset: UTF-8
-    template-loader-path: classpath:/templates/
-  security:
-    logintype: JSON

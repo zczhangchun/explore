@@ -7,25 +7,6 @@
     <artifactId>explore</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
-    <modules>
-        <module>explore-spring</module>
-        <module>explore-springboot</module>
-        <module>explore-mybatis</module>
-        <module>explore-designPattern</module>
-        <module>explore-concurrency</module>
-        <module>explore-akka</module>
-        <module>explore-elasticsearch</module>
-        <module>explore-elasticsearch/es-apply</module>
-        <module>explore-netty</module>
-        <module>explore-springboot/apply/test</module>
-        <module>explore-elasticsearch/es-apply/es-core-second</module>
-        <module>explore-httpclient</module>
-        <module>explore-redisson</module>
-        <module>explore-storm</module>
-        <module>explore-hystrix</module>
-        <module>explore-ehcache</module>
-        <module>explore-security</module>
-        <module>explore-security/explore-httpbasic</module>
-    </modules>
+
 
 </project>

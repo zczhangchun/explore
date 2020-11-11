@@ -5,8 +5,10 @@
 
     <modelVersion>4.0.0</modelVersion>
 
+    <groupId>com.zhangchun</groupId>
     <artifactId>explore-mybatis</artifactId>
     <packaging>pom</packaging>
+    <version>0.0.1-SNAPSHOT</version>
     <modules>
         <module>mutilDataSource</module>
     </modules>

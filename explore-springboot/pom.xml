@@ -17,8 +17,6 @@
     <modules>
         <module>apply</module>
         <module>source</module>
-        <module>apply/mybatis</module>
-        <module>apply/redis</module>
     </modules>
     <dependencies>
         <dependency>
