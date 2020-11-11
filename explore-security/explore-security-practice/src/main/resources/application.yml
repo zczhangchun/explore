@@ -4,6 +4,13 @@ spring:
     driver-class-name: com.mysql.jdbc.Driver
     username: root
     password: zc123123
+  freemarker:
+    cache: false
+    suffix: .html
+    charset: UTF-8
+    template-loader-path: classpath:/templates/
+  security:
+    logintype: JSON
 
 mybatis-plus:
   mapper-locations: classpath:mapper/*.xml

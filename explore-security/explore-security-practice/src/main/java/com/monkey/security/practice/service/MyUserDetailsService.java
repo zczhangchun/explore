@@ -8,12 +8,12 @@ import org.springframework.security.core.authority.AuthorityUtils;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-@Service
+@Component
 @AllArgsConstructor
 public class MyUserDetailsService implements UserDetailsService {
 
@@ -23,11 +23,9 @@ public class MyUserDetailsService implements UserDetailsService {
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
         //获取用户信息
-        MyUserDetails myUserDetails = new MyUserDetails();
-        myUserDetails.setUsername(username);
-        QueryWrapper<MyUserDetails> queryWrapper = new QueryWrapper<>(myUserDetails);
-
-        myUserDetails = myUserDetailsMapper.selectOne(queryWrapper);
+        QueryWrapper<MyUserDetails> queryWrapper = new QueryWrapper<>();
+        queryWrapper.eq("username", username);
+        MyUserDetails myUserDetails = myUserDetailsMapper.selectOne(queryWrapper);
         if (myUserDetails == null){
             throw new UsernameNotFoundException("用户名不存在");
         }

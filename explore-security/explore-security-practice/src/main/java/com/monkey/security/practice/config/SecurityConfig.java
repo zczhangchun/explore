@@ -1,7 +1,6 @@
 package com.monkey.security.practice.config;
 
 import com.monkey.security.practice.service.MyUserDetailsService;
-import com.monkey.security.practice.strategy.CustomExpiredSessionStrategy;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -24,17 +23,17 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http
-                .sessionManagement()
-                //固化保护
-                .sessionFixation()
-                //固化保护策略：每次都创建一个新的session
-                .migrateSession()
-                //只允许账号在一个端登陆
-                .maximumSessions(1)
-                .maxSessionsPreventsLogin(false)
-                .expiredSessionStrategy(new CustomExpiredSessionStrategy())
-                .and()
-                .and()
+//                .sessionManagement()
+//                //固化保护
+//                .sessionFixation()
+//                //固化保护策略：每次都创建一个新的session
+//                .migrateSession()
+//                //只允许账号在一个端登陆
+//                .maximumSessions(1)
+//                .maxSessionsPreventsLogin(false)
+//                .expiredSessionStrategy(new CustomExpiredSessionStrategy())
+//                .and()
+//                .and()
                 //禁用跨站csrf攻击防御
                 .csrf().disable()
                 //使用formLogin模式
@@ -56,7 +55,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/login.html", "/login").permitAll()
                 // index页面必须是authenticated才能访问
                 .antMatchers().authenticated()
-                .anyRequest().access("")
+                .anyRequest().access("@myRDBAService.hasPermision(request, authentication)")
                 .anyRequest().authenticated();
     }
 
@@ -65,7 +64,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
      */
     @Override
     protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-        auth.userDetailsService(userDetailsService())
+        auth.userDetailsService(myUserDetailsService)
                 .passwordEncoder(passwordEncoder());
     }
 
