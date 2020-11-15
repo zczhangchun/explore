@@ -1,0 +1,7 @@
+使用JWT
+
+==========================================================================================
+解决跨站资源访问CORS
+
+1、http.cors().and()。WebSecurityConfigurerAdapter中的configure(HttpSecurity http)配置方法。
+2、注入过滤器。CorsConfigurationSource corsConfigurationSource()
