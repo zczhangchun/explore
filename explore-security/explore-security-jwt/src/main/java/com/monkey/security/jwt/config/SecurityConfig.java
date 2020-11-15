@@ -55,7 +55,7 @@ public class SecurityConfig  extends WebSecurityConfigurerAdapter {
              .and().cors()
                 .and()
              .authorizeRequests()
-                .antMatchers("/authentication","/refreshtoken").permitAll()
+                .antMatchers("/authentication","/refreshToken").permitAll()
                 .antMatchers("/index").authenticated()
                 .anyRequest().access("@rabcService.hasPermission(request,authentication)")
              .and().sessionManagement()
