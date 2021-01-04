@@ -7,6 +7,10 @@
     <artifactId>explore</artifactId>
     <packaging>pom</packaging>
     <version>0.0.1-SNAPSHOT</version>
+    <modules>
+        <module>explore-shiro</module>
+        <module>explore-quartz</module>
+    </modules>
 
 
 </project>

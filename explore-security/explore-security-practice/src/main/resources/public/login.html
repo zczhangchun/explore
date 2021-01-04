@@ -11,37 +11,51 @@
 <form action="/login" method="post">
     <span>用户名称</span><input type="text" name="username" id="username"/> <br>
     <span>用户密码</span><input type="password" name="password"  id="password"/> <br>
-    <input type="submit" value="登陆"/>
+    <label><input type="checkbox" name="remember-me" id="rememberme"/>记住密码</label>
+    <img src="/kaptcha" id="kaptcha" width="110px" height="40px"/>
+    <input type="button" onclick="login()" value="登陆"/>
 </form>
 <script type="text/javascript">
-    // function login() {
-    //     console.log("hello")
-    //     var username = $("#username").val();
-    //     var password = $("#password").val();
-    //     if (username === "" || password === "") {
-    //         alert('用户名或密码不能为空');
-    //         return;
-    //     }
-    //     $.ajax({
-    //         type: "POST",
-    //         url: "/login",
-    //         data: {
-    //             "username": username,   //这里的参数名称要和Spring Security配置一致
-    //             "password": password
-    //         },
-    //         success: function (json) {
-    //             if(json.isok){
-    //                 location.href = '/'; //index.html](//index.html)
-    //             }else{
-    //                 alert(json.message);
-    //                 location.href = '/login.html'; //index.html](//index.html)
-    //             }
-    //         },
-    //         error: function (e) {
-    //             console.log("失败"+json)
-    //         }
-    //     });
-    // }
+    window.onload=function(){
+        var kaptchaImg = document.getElementById("kaptcha");
+        kaptchaImg.onclick = function(){
+            kaptchaImg.src = "/kaptcha?" + Math.floor(Math.random() * 100)
+        }
+    }
+
+    function login() {
+        console.log("hello")
+        var username = $("#username").val();
+        var password = $("#password").val();
+        var rememberme = $("#rememberme").val();
+
+        if (username === "" || password === "") {
+            alert('用户名或密码不能为空');
+            return;
+        }
+        $.ajax({
+            type: "POST",
+            url: "/login",
+            data: {
+                "username": username,   //这里的参数名称要和Spring Security配置一致
+                "password": password,
+                "remember-me": rememberme
+            },
+            success: function (json) {
+
+                if(json.isok){
+                    alert("sucess:" + json.isok)
+                    location.href = '/index.html'; //index.html](//index.html)
+                }else{
+                    alert(json.message);
+                    location.href = '/login.html'; //index.html](//index.html)
+                }
+            },
+            error: function (e) {
+                console.log("失败"+json)
+            }
+        });
+    }
 </script>
 
 </body>

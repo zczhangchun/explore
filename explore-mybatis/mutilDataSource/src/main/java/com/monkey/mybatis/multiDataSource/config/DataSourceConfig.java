@@ -13,6 +13,6 @@ public class DataSourceConfig {
 
     @Bean
     public DataSource hadoopDatSource() {
-
+        return null;
     }
 }

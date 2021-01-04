@@ -7,7 +7,7 @@
         SELECT role_code
         FROM sys_role
         LEFT JOIN sys_user_role sur on sys_role.id = sur.role_id
-        LEFT JOIN sys_user su on sys_role.create_time = su.create_time
+        LEFT JOIN sys_user su on sur.user_id = su.id
         WHERE su.username = #{username}
     </select>
 

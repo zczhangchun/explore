@@ -13,6 +13,7 @@ package create.builder;
  */
 public class Main {
     public static void main(String[] args) {
+
         Product build = Product.builder().buildSofa("沙发")
                 .buildTV("TV")
                 .build();

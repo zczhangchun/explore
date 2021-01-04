@@ -1,10 +1,12 @@
 package com.monkey.security.practice.model;
 
+import com.baomidou.mybatisplus.annotation.TableField;
+import com.baomidou.mybatisplus.annotation.TableName;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
 import java.util.Collection;
-
+@TableName("sys_user")
 public class MyUserDetails implements UserDetails {
 
     /**
@@ -20,16 +22,19 @@ public class MyUserDetails implements UserDetails {
     /**
      * 是否没过期
      */
+    @TableField(exist = false)
     private Boolean accountNonExpired;
 
     /**
      * 是否没被锁定
      */
+    @TableField(exist = false)
     private Boolean accountNonLocked;
 
     /**
      * 是否没过期
      */
+    @TableField(exist = false)
     private Boolean credentialsNonExpired;
 
     /**
@@ -40,6 +45,7 @@ public class MyUserDetails implements UserDetails {
     /**
      * 用户的权限集合
      */
+    @TableField(exist = false)
     private Collection<? extends GrantedAuthority> authorities;
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {

@@ -9,6 +9,6 @@ public class ElectricAdapter implements Motor {
     }
 
     public void drive() {
-        electricMotor.electricDrive();;
+        electricMotor.electricDrive();
     }
 }

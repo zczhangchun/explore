@@ -8,6 +8,7 @@
         <artifactId>spring-boot-starter-parent</artifactId>
         <groupId>org.springframework.boot</groupId>
         <version>2.0.5.RELEASE</version>
+        <relativePath/>
     </parent>
     <groupId>com.zhangchun.explore.springboot</groupId>
     <artifactId>explore-springboot</artifactId>
@@ -15,8 +16,17 @@
     <packaging>pom</packaging>
     <name>explore-springboot parent</name>
     <modules>
-        <module>apply</module>
-        <module>source</module>
+        <module>explore-springboot-cache</module>
+        <module>explore-springboot-druidDataSource</module>
+        <module>explore-springboot-element</module>
+        <module>explore-springboot-kafka</module>
+        <module>explore-springboot-multiProfiles</module>
+        <module>explore-springboot-mybatis</module>
+        <module>explore-springboot-propertiesMapping</module>
+        <module>explore-springboot-redis</module>
+        <module>explore-springboot-test</module>
+        <module>explore-springboot-warProject</module>
+        <module>explore-springboot-webjarProject</module>
     </modules>
     <dependencies>
         <dependency>
