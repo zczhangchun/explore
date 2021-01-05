@@ -27,6 +27,7 @@
         <module>explore-springboot-test</module>
         <module>explore-springboot-warProject</module>
         <module>explore-springboot-webjarProject</module>
+        <module>explore-springboot-quartz</module>
     </modules>
     <dependencies>
         <dependency>
