@@ -15,7 +15,7 @@ public class JDBCJobStoreDemo {
 
         final JobDetail jobDetail = JobBuilder.newJob(HelloJob.class)
                 .withIdentity("myJob", "myJobGroup1")
-                .usingJobData("job_param", "job_param1")
+                .usingJobData("k1", "origin")
                 .build();
         final SimpleTrigger trigger = TriggerBuilder.newTrigger()
                 .withIdentity("myTrigger", "myTriggerGroup1")

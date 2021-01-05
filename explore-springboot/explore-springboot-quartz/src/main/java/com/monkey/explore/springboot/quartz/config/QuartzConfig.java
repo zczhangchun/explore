@@ -16,7 +16,7 @@ public class QuartzConfig {
     public JobDetail myJobDetail(){
         return JobBuilder.newJob(MyJob.class)
                 .withIdentity("myJob1", "myJobGroup1")
-                .usingJobData("job_param", "job_param1")
+                .usingJobData("k1", "origin")
                 .storeDurably()
                 .build();
     }

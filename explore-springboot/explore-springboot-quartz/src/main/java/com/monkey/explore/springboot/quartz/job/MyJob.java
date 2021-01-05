@@ -11,6 +11,6 @@ import org.springframework.scheduling.quartz.QuartzJobBean;
 public class MyJob extends QuartzJobBean {
     @Override
     protected void executeInternal(JobExecutionContext jobExecutionContext) throws JobExecutionException {
-        System.out.println("hi man");
+        System.out.println(jobExecutionContext.getJobDetail().getJobDataMap().getString("k1"));
     }
 }
