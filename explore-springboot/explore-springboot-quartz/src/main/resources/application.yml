@@ -1,6 +1,7 @@
 spring:
   #配置数据源
   datasource:
+    name: quartz
     driver-class-name: com.mysql.jdbc.Driver
     url: jdbc:mysql://rm-bp1pmj8cpzd51eqb5ho.mysql.rds.aliyuncs.com:3306/quartz?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
     username: zhangchun
@@ -13,15 +14,22 @@ spring:
       org:
         quartz:
           scheduler:
-            instanceName: MyScheduler
+            instanceName: scheduler
             instanceId: AUTO
           jobStore:
+            dataSource: quartz
             class: org.quartz.impl.jdbcjobstore.JobStoreTX
             driverDelegateClass: org.quartz.impl.jdbcjobstore.StdJDBCDelegate
             tablePrefix: QRTZ_
             isClustered: true
             clusterCheckinInterval: 10000
             useProperties: false
+#          dataSource:
+#            quartz:
+#              driver: com.mysql.jdbc.Driver
+#              URL: jdbc:mysql://rm-bp1pmj8cpzd51eqb5ho.mysql.rds.aliyuncs.com:3306/quartz?serverTimezone=UTC&useSSL=false&useUnicode=true&characterEncoding=UTF-8
+#              username: zhangchun
+#              password: zc123123
           threadPool:
             class: org.quartz.simpl.SimpleThreadPool
             threadCount: 10
